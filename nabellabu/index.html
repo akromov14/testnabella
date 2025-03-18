@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahsulotlar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden; /* Gorizontal skrollni oldini olish */
+        }
+
+        .loaders{
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: #f8f9fa;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: black;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+        }
+        .nav-menu li {
+            margin-left: 20px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: black;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #f39c12;
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* padding: 100px 10%; */
+            padding: 20px 300px;
+            height: 800px;
+            background: #f4f4f4;
+        }
+        .header img {
+            /* width: 40%;
+            max-width: 400px; */
+            width: 700px;
+            height: 100%;
+            object-fit: cover;
+        }
+        .header-text {
+            width: 50%;
+        }
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .header-text p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .header-text button {
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            background: #f39c12;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .header-text button:hover {
+            background: #d68910;
+        }
+
+        .rasmlar{
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: white;
+                width: 200px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .nav-menu.show {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            .menu-toggle {
+                display: block;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding: 30px 5%;
+            }
+            .header img {
+                width: 700px;
+            }
+            .header-text {
+                width: 100%;
+            }
+        }
+
+
+        .savat{
+            min-height: 300px;
+            background-color: aqua;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .footer a {
+            color: #f39c12;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div id="loader" class="loaders bg-pink-100">
+        <div>
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h4 class="text-primary text-xl font-bold mt-2">Loading...</h4>
+        </div>
+    </div>
+    <section id="content" style="display: none;">
+        <nav class="navbar">
+            <div class="container">
+                <a href="#" class="navbar-brand">Nabella</a>
+                <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <header class="header">
+            <img src="otherimage/drrashelaloetop.jpg" alt="Woman Face">
+            <div class="header-text">
+                <h1>Haqiqiy go'zalligingizni kashf eting</h1>
+                <p>Siz uchun moslashtirilgan eng yaxshi terini parvarish qilish va go'zallik mahsulotlarini sinab ko'ring.</p>
+                <button class="btn">
+                    <a href="#products">Buyurtma berish</a>
+                </button>
+            </div>
+        </header>
+
+        <div class="container mx-auto pt-4">
+            <h1 class="text-2xl font-bold mb-4">Mahsulotlar ro'yxati</h1>
+            <div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mt-6 p-4 bg-white shadow rounded savat">
+                        <h2 class="text-xl font-bold mb-2">Savat</h2>
+                        <ul id="cart" class="mb-2"></ul>
+                        <p class="font-bold">Umumiy summa: <span id="totalPrice">0</span> so'm</p>
+                        <button onclick="clearCart()" class="mt-2 bg-red-500 text-white px-4 py-2 rounded w-full">Savatni Tozalash</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mt-6 p-4 bg-white shadow rounded savat">
+                        <h2 class="text-xl font-bold mb-2">Mijoz ma'lumotlari</h2>
+                        <input type="text" id="customerName" placeholder="Ismingiz" class="w-full p-2 border rounded mb-2">
+                        <input type="text" id="customerPhone" placeholder="Telefon raqamingiz" class="w-full p-2 border rounded mb-2">
+                        <button onclick="sendOrderToTelegram()" class="mt-2 bg-green-500 text-white px-4 py-2 rounded w-full">Buyurtmani Telegramga Yuborish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="container my-5">
+            <div class="w-100 text-center pt-3 pb-3">
+                <h1 class="text-3xl">Biz bilan aloqa!</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-6 pb-3">
+                    <h2 class="text-2xl">Telefon raqam:</h2>
+                    <p>Tel: +998 93 802 07 81</p>
+                    <p class="text-2xl">Email:</p>
+                    <p>nabella.uz@mail.ru</p>
+                    <p class="text-2xl text-primary-emphasis"><a href="https://t.me/akromov07"><i class="bi bi-chat-dots"></i> Telegram Admin</a></p>
+                    <div class="text-1xl">
+                        <a href="https://instagram.com/nabella.uz" class="me-3 text-primary"><i class="bi bi-facebook"></i> Facebook</a>
+                        <a href="https://instagram.com/nabella.uz" class="me-3 text-danger"><i class="bi bi-instagram"></i> Instagram</a>
+                        <a href="https://t.me/nabella_uz" class="text-primary-emphasis"><i class="bi bi-telegram"></i> Telegram</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <iframe src="https://yandex.uz/map-widget/v1/?um=constructor%3A4c2d8e63f66d10c8a9f0f3dfc6b46a0c705d0b03a690798da3707b1ea022c8d4&amp;source=constructor" width="100%" height="300" style="border:0;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Nabella. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> | <a href="https://t.me/akromov07">Bog'lanish uchun</a></p>
+        </footer>
+    </section>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+            document.getElementById("content").style.display = "block";
+        }, 1000);
+
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+
+        // const botToken = "7557974630:AAG6xouAFCzRzR9q_c__hvUD9ga_AR1Ii_U"; 
+        // const chatId = "6125897758"; 
+
+        const products = [
+            { name: "Dr-Rashel Aloe Vera Penka", price: 100000, image: "otherimage/drrashelPenka.jpg" },
+            { name: "Dr-Rashel VC Vitamin C", price: 200000, image: "otherimage/drrashelPenka.jpg" },
+            { name: "Dr-Rashel Collagen", price: 300000, image: "otherimage/drrashelPenka.jpg" },
+            { name: "Dr-Rashel Anti-aging & Moisture Sun Cream Spf 60 ++, 60 gr", price: 300000, image: "otherimage/drrashelPenka.jpg" },
+            { name: "Dr-Rashel Oqartiruvchi sovun", price: 300000, image: "otherimage/drrashelPenka.jpg" },
+            { name: "Ko'z uchun krem Dr-Rashel Aloe Vera", price: 300000, image: "otherimage/drrashelPenka.jpg" }
+        ];
+
+        let selectedProducts = [];
+        let totalPrice = 0;
+
+        function loadProducts() {
+            const productContainer = document.getElementById("products");
+            products.forEach((product, index) => {
+                const productCard = document.createElement("div");
+                productCard.className = "bg-gray p-4 rounded shadow-lg card";
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="rasmlar object-cover rounded">
+                    <h2 class="text-lg font-semibold mt-2">${product.name}</h2>
+                    <p class="text-gray-600">Narxi: ${product.price.toLocaleString()} so'm</p>
+                    <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded" onclick="addToCart(${index})">Tanlash</button>
+                `;
+                productContainer.appendChild(productCard);
+            });
+        }
+
+        function addToCart(index) {
+            selectedProducts.push(products[index]);
+            totalPrice += products[index].price;
+            alert(`${products[index].name} savatga qo'shildi!`);
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            totalPrice -= selectedProducts[index].price;
+            selectedProducts.splice(index, 1);
+            updateCart();
+        }
+
+        function clearCart() {
+            selectedProducts = [];
+            totalPrice = 0;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartElement = document.getElementById("cart");
+            cartElement.innerHTML = "";
+            selectedProducts.forEach((product, index) => {
+                const item = document.createElement("li");
+                item.innerHTML = `${index + 1}. ${product.name} - ${product.price.toLocaleString()} so'm <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">❌</button>`;
+                cartElement.appendChild(item);
+            });
+            document.getElementById("totalPrice").textContent = totalPrice.toLocaleString();
+        }
+
+        function sendOrderToTelegram() {
+            const name = document.getElementById("customerName").value.trim();
+            const phone = document.getElementById("customerPhone").value.trim();
+            
+            if (!name || !phone) {
+                alert("Iltimos, ismingiz va telefon raqamingizni kiriting!");
+                return;
+            }
+
+            if (selectedProducts.length === 0) {
+                alert("Iltimos, kamida bitta mahsulot tanlang!");
+                return;
+            }
+
+            let message = `📦 *Yangi Buyurtma!*
+            👤 *Ism:* ${name}
+            📞 *Telefon:* ${phone}\n\n`;
+            let total = 0;
+            selectedProducts.forEach((product, index) => {
+                message += `🔹 ${index + 1}. *${product.name}* - ${product.price.toLocaleString()} so'm\n`;
+                total += product.price;
+            });
+            message += `\n💰 *Umumiy summa:* ${total.toLocaleString()} so'm`;
+
+            const botToken = "7557974630:AAG6xouAFCzRzR9q_c__hvUD9ga_AR1Ii_U"; 
+            const chatId = "6125897758"; 
+
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=-1002510446370&text=${encodedMessage}&parse_mode=Markdown`;
+            
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: "Markdown"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    alert("Buyurtma muvaffaqiyatli yuborildi!");
+                    clearCart();
+                    document.getElementById("customerName").value = "";
+                    document.getElementById("customerPhone").value = "";
+                } else {
+                    alert("Xatolik yuz berdi!");
+                }
+            })
+            .catch(error => console.error("Telegram xatosi:", error));
+        }
+        
+        loadProducts();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>
+
+
+
